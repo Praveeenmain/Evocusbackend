@@ -45,7 +45,12 @@ app.get("/products", async (req, res) => {
 
     // Build sorting options
     const sort = {};
-    if (sort_by) {
+      if (sort_by === "highestAmount") {
+      sort.price = -1; // Sort by price descending
+    } else if (sort_by === "lowestAmount") {
+      sort.price = 1; // Sort by price ascending
+    } else if (sort_by) {
+      // Default sort by any other field
       sort[sort_by] = 1; // assuming ascending order, use -1 for descending
     }
 
